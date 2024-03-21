@@ -1,0 +1,27 @@
+security:
+    password_hashers:
+        App\Entity\Users:
+            algorithm: bcrypt
+
+    providers:
+        users_in_database:
+            entity:
+                class: App\Entity\Users
+                property: email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            json_login:
+                check_path: api_login
+                username_path: email
+                password_path: password
+            logout:
+                path: app_logout
+                # Możesz dodać 'target' aby określić, gdzie użytkownik zostanie przekierowany po wylogowaniu
+
+#    access_control:
+#        - { path: ^/admin, roles: ROLE_USER }
