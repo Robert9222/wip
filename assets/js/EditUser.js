@@ -21,10 +21,8 @@ const EditUser = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // Tutaj logika do wysłania danych użytkownika
     };
 
-    // Formularz do edycji danych użytkownika
     return (
         <form onSubmit={handleSubmit}>
             <input type="text" value={userData.name} /* ... */ />

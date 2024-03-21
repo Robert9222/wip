@@ -19,29 +19,23 @@ class RegistrationController extends AbstractController
     #[Route('api/register', name: 'api_register', methods: ['POST'])]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
-        // Odbierz dane JSON
         $jsonData = json_decode($request->getContent(), true);
 
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
 
-        // Użyj `submit` zamiast `handleRequest`
         $form->submit($jsonData);
 
-
-// Generowanie bezpiecznego hasła
         $plainPassword = bin2hex(random_bytes(10)); // Generuje 20-znakowe hasło
 
-        // Hashowanie hasła i zapisywanie użytkownika
         $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
 
 
         $entityManager->persist($user);
         $entityManager->flush();
 
-        // Wysyłanie e-maila z hasłem
         $email = (new Email())
-            ->from('example@example.com') // Podmień na Twój e-mail
+            ->from('example@example.com')
             ->to($user->getEmail())
             ->subject('Witamy na pokładzie!')
             ->html("

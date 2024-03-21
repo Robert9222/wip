@@ -16,7 +16,6 @@ const LoginForm = () => {
             navigate('/admin');
         } catch (error) {
             console.error("Błąd logowania: ", error);
-            // Obsługa błędów, np. wyświetlenie komunikatu
         }
     };
 

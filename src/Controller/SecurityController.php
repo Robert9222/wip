@@ -17,7 +17,6 @@ class SecurityController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         $email = $data['email'] ?? null;
-        $plainPassword = $data['password'] ?? null;
 
         $existingUser = $userRepository->findOneBy(['email' => $email]);
 

@@ -28,10 +28,8 @@ const RegistrationForm = () => {
         // Submit form data
         axios.post('/api/register', formData)
             .then(response => {
-                // Handle success
             })
             .catch(error => {
-                // Handle error
             });
     };
 

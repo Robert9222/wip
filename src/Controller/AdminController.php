@@ -27,10 +27,8 @@ class AdminController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        // Przykładowa aktualizacja - dostosuj to do swoich potrzeb
         $user->setFirstName($data['firstName'] ?? $user->getFirstName());
         $user->setLastName($data['lastName'] ?? $user->getLastName());
-        // Kontynuuj dla innych pól...
 
         $entityManager->persist($user);
         $entityManager->flush();

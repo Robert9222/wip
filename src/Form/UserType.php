@@ -14,20 +14,14 @@ class UserType extends AbstractType {
         $builder
             ->add('firstName', TextType::class, [
                 'label' => 'Imię',
-                // Dodatkowe opcje, jeśli potrzebne
             ])
             ->add('lastName', TextType::class, [
                 'label' => 'Nazwisko',
-                // Dodatkowe opcje
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
-                // Dodatkowe opcje
             ])
-            // Przykład dodania dodatkowego pola, np. rola użytkownika
-            // Możesz potrzebować niestandardowej logiki, aby to poprawnie obsłużyć
-            // Jeśli rola jest prostym stringiem, użyj TextType, ale dla zaawansowanych przypadków,
-            // może być potrzebny ChoiceType lub inny typ formularza
+
             ->add('role', TextType::class, [
                 'label' => 'Rola',
                 // Dodatkowe opcje
