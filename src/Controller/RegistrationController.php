@@ -26,9 +26,9 @@ class RegistrationController extends AbstractController
 
         $form->submit($jsonData);
 
-        $plainPassword = bin2hex(random_bytes(10));
+        $password = bin2hex(random_bytes(10));
 
-        $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
+        $user->setPassword($passwordHasher->hashPassword($user, $password));
 
 
         $entityManager->persist($user);
@@ -43,7 +43,7 @@ class RegistrationController extends AbstractController
                     <p>Dziękujemy za rejestrację. Oto Twoje dane do logowania:</p>
                     <ul>
                         <li>Email: {$user->getEmail()}</li>
-                        <li>Hasło: {$plainPassword}</li>
+                        <li>Hasło: {$password}</li>
                     </ul>
                     <p>Zalecamy zmianę hasła po pierwszym logowaniu.</p>
                 ");

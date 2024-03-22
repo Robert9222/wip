@@ -32,16 +32,13 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface {
     private string $email;
 
     #[ORM\Column(type: 'string')]
-    private ?string $password;
+    #[Assert\NotBlank]
+    private string $password;
     #[ORM\Column(type: 'string')]
     private ?string $role = null;
-    #[ORM\Column(type: 'string')]
-    private ?string $plainPassword;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
-
-
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $position = null;
@@ -170,7 +167,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface {
         $this->knowsScrum = $knowsScrum;
     }
 
-    // Metody get i set dla każdej właściwości
     public function getId(): ?int {
         return $this->id;
     }
@@ -202,37 +198,29 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface {
         return $this;
     }
 
-    public function getPassword(): ?string {
+    public function getPassword(): string {
         return $this->password;
     }
 
-    public function setPassword(?string $password): self {
+    public function setPassword(string $password): self {
         $this->password = $password;
         return $this;
     }
 
     public function getRoles(): array {
-        // Zwraca role użytkownika, np. ['ROLE_USER']
         return ['ROLE_USER'];
     }
 
-    public function getSalt(): ?string {
-        // Nie potrzebujesz soli, jeśli używasz nowoczesnego algorytmu szyfrowania
-        return null;
-    }
-
     public function getUsername(): string {
-        // W tym przypadku username to email
         return $this->email;
     }
 
     public function eraseCredentials(): void
     {
-        // Jeśli przechowujesz jakiekolwiek tymczasowe, wrażliwe dane na obiekcie, wyczyść je tutaj
+
     }
 
     public function getUserIdentifier(): string {
-        // W PHP 8.2, zamiast getUsername() używa się getUserIdentifier()
         return $this->email;
     }
 
@@ -242,15 +230,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface {
 
     public function setRole(?string $role): self {
         $this->role = $role;
-        return $this;
-    }
-
-    public function getPlainPassword(): ?string {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword(string $plainPassword): self {
-        $this->plainPassword = $plainPassword;
         return $this;
     }
 }
