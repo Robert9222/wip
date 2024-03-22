@@ -1,8 +1,10 @@
 Aplikacja umożliwia rejestrowanie różnego rodzaju użytkowników oraz ich zarządzaniem (lista, edycja, usuwanie). Aplikacja składa się z częsci rejestracyjnej oraz administracyjnej.
-Uruchomienie aplikacji
+Uruchomienie aplikacji:
+
 Sklonuj repozytorium projektu:
 git clone [URL_REPOZYTORIUM]
 Wejdź do folderu projektu:
+
 Uruchom usługi Docker przy użyciu Docker Compose:
 docker-compose up -d --build
 
