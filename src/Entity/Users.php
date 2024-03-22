@@ -34,8 +34,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface {
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
     private string $password;
-    #[ORM\Column(type: 'string')]
-    private ?string $role = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
@@ -222,14 +220,5 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface {
 
     public function getUserIdentifier(): string {
         return $this->email;
-    }
-
-    public function getRole(): ?string {
-        return $this->role;
-    }
-
-    public function setRole(?string $role): self {
-        $this->role = $role;
-        return $this;
     }
 }

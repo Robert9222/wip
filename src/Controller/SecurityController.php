@@ -6,14 +6,12 @@ use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class SecurityController extends AbstractController
 {
     #[Route('/login', name: 'login', methods: ['POST'])]
-    public function apiLogin(Request $request, UserPasswordHasherInterface $passwordHasher, UsersRepository $userRepository, SerializerInterface $serializer): Response
+    public function apiLogin(Request $request, UsersRepository $userRepository): Response
     {
         $data = json_decode($request->getContent(), true);
         $email = $data['email'] ?? null;

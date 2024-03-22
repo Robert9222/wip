@@ -14,12 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/')]
 class AdminController extends AbstractController
 {
-
     #[Route('/api/admin', name: 'admin_index', methods: ['GET'])]
     public function index(UsersRepository $usersRepository): JsonResponse
     {
         $users = $usersRepository->findAll();
-        return $this->json($users); // Zwracanie użytkowników jako JSON
+        return $this->json($users);
     }
 
     #[Route('/api/admin/{id}/edit', name: 'admin_edit', methods: ['POST'])]
