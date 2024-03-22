@@ -34,7 +34,6 @@ class RegistrationFormType extends AbstractType {
                 'label' => 'Pozycja',
                 'required' => false,
             ])
-            // Dodaj resztę nowych pól tutaj
             ->add('testingSystems', TextType::class, [
                 'label' => 'Systemy testujące',
                 'required' => false,
