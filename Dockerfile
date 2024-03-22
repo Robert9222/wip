@@ -40,18 +40,22 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
 
 RUN curl -sS https://getcomposer.org/installer | php -- \
     &&  mv composer.phar /usr/local/bin/composer
-RUN /bin/sh -c php bin/console doctrine:migrations:migrate --no-interaction
-RUN docker-php-ext-configure \
-            intl \
-    &&  docker-php-ext-install \
-            pdo pdo_mysql pdo_pgsql opcache intl zip calendar dom mbstring xsl sockets bz2
+
+# Instalacja rozszerzeń pdo_mysql
+RUN docker-php-ext-install pdo_mysql
+# Instaluj potrzebne zależności i rozszerzenia PHP
+RUN apt-get update && apt-get install -y \
+        libpq-dev \
+        default-libmysqlclient-dev \
+    && docker-php-ext-install \
+        pdo pdo_mysql
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 RUN pecl install apcu && docker-php-ext-enable apcu
 RUN docker-php-ext-install soap
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install bz2
-
+RUN /bin/sh -c php bin/console doctrine:migrations:migrate --no-interaction
 RUN npm install --global yarn
 # Uruchom migracje (upewnij się, że konfiguracja bazy danych jest dostępna dla aplikacji)
 WORKDIR /var/www/app/

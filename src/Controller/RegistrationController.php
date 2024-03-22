@@ -26,7 +26,7 @@ class RegistrationController extends AbstractController
 
         $form->submit($jsonData);
 
-        $plainPassword = bin2hex(random_bytes(10)); // Generuje 20-znakowe hasło
+        $plainPassword = bin2hex(random_bytes(10));
 
         $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
 

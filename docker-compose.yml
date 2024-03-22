@@ -19,8 +19,9 @@ services:
   database:
     image: mysql:8.0.32
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: users
-
+    volumes:
+      - db_data:/var/lib/mysql
 volumes:
-  db_data:
+  db_data: {}
