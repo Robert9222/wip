@@ -18,7 +18,7 @@ class RegistrationFormType extends AbstractType {
             ->add('firstName', TextType::class, ['label' => 'Imię'])
             ->add('lastName', TextType::class, ['label' => 'Nazwisko'])
             ->add('email', EmailType::class, ['label' => 'Email'])
-            ->add('role', ChoiceType::class, [
+            ->add('position', ChoiceType::class, [
                 'choices' => [
                     'Tester' => 'tester',
                     'Developer' => 'developer',
@@ -28,10 +28,6 @@ class RegistrationFormType extends AbstractType {
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Opis',
-                'required' => false,
-            ])
-            ->add('position', TextType::class, [
-                'label' => 'Pozycja',
                 'required' => false,
             ])
             ->add('testingSystems', TextType::class, [

@@ -20,11 +20,6 @@ class UserType extends AbstractType {
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
-            ])
-
-            ->add('role', TextType::class, [
-                'label' => 'Rola',
-                // Dodatkowe opcje
             ]);
     }
 

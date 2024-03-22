@@ -84,10 +84,14 @@ const AdminPanel = () => {
                     <div>
                         <h3>Edytuj Użytkownika</h3>
                         <form onSubmit={handleUpdateUser}>
-                            <input type="text" value={editUser.firstName}
+                            <input type="text"  placeholder="imie" value={editUser.firstName}
                                    onChange={(e) => setEditUser({...editUser, firstName: e.target.value})}/>
-                            <input type="text" value={editUser.lastName}
+                            <input type="text"  placeholder="nazwisko" value={editUser.lastName}
                                    onChange={(e) => setEditUser({...editUser, lastName: e.target.value})}/>
+                            <input type="email" placeholder="email" value={editUser.email}
+                                onChange={(e) => setEditUser({...editUser, email: e.target.value})}/>
+                            <input type="password" placeholder="Nowe hasło"
+                                onChange={(e) => setEditUser({...editUser, password: e.target.value})}/>
 
                             <button type="submit">Zapisz</button>
                             <button onClick={() => setEditUser(null)}>Anuluj</button>
